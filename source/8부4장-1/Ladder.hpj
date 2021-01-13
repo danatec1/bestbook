@@ -1,0 +1,15 @@
+[OPTIONS]
+LCID=0x412 0x0 0x0 ; 한국어
+REPORT=Yes
+CNT=Ladder.cnt
+HLP=Ladder.hlp
+
+[FILES]
+Ladder.rtf
+
+[MAP]
+ID01=1              ; 사다리 게임이란..
+ID02=2              ; 게임방법
+
+[WINDOWS]
+ladder="",(653,102,360,600),20736,(r14876671),(r12632256),f3

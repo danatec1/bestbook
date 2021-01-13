@@ -1,0 +1,68 @@
+1. BitBlt 
+Private Declare Function BitBlt Lib "gdi32" (ByVal hDestDC As Long, ByVal x As Long, ByVal y As Long, _
+                                             ByVal nWidth As Long, ByVal nHeight As Long, _
+                                             ByVal hSrcDC As Long, ByVal xSrc As Long, ByVal ySrc As Long, _
+                                             ByVal dwRop As Long) As Long
+Private Const SRCAND = &H8800C6
+Private Const SRCCOPY = &HCC0020
+Private Const SRCERASE = &H440328
+Private Const SRCINVERT = &H660046
+
+BitBlt()는 윈도우즈의 그래픽 처리를 위한 API입니다.
+괄호를 하시면 반환값을 리턴 하는건 아시죠?
+먼저 함수에 전달하는 인자를 살펴보죠.
+ByVal hDestDC As Long
+ - 복사하려는 그림상자의 장치 번호. 그림상자이름 다음에 마침표를 찍으면 속성이 나오죠?
+   그곳에 있습니다.
+ByVal x As Long
+ - 복사하는 그림상자의 X좌표
+ByVal y As Long
+ - 복사하는 그림상자의 Y좌표
+ByVal nWidth As Long
+ - 복사하려는 폭.
+ByVal nHeight As Long
+ - 복사하려는 높이
+ByVal hSrcDC As Long
+ - 원본그림상자의 장치번호.
+ByVal xSrc As Long
+ - 원본그림상자의 X 좌표
+ByVal ySrc As Long
+ - 원본그림상자의 Y 좌표
+ByVal dwRop As Long
+ - 복사 방법.
+
+2. 복사 방법
+SRCAND = &H8800C6
+ - 대상그림에 원본그림을 AND연산하여 조합.
+SRCCOPY = &HCC0020
+ - 대상그림에 원본그림을 복사.
+SRCERASE = &H440328
+ - 대상그림을 반전하여 원본그림을 AND연산하여 조합.
+SRCINVERT = &H660046
+ - 대상그림에 원본그림을 XOR연산하여 조합.
+
+
+3. 예제...
+'작업 화면에 배경 그림을 복사
+BitBlt picWork.hDC, 0, 0, 300, 100, picBack.hDC, 0, 0, SRCCOPY
+: 작업화면(picWork.hDC)의 X좌표(0) Y좌표(0) 에 폭(300) 높이(100)의 그림영을 할당하여
+  원본그림(picBack.hDC)의 X좌표(0) Y좌표(0)를 복사(SRCCOPY)한다.
+
+'작업 화면에 마스크 그림을 복사(대상을 반전하여 And 연산)
+BitBlt picWork.hDC, MoveX, 20, 60, 45, picChar.hDC, CharNum * 60, 45, SRCERASE
+: 작업화면(picWork.hDC)의 X좌표(Movex) Y좌표(20) 에 폭(60) 높이(45)의 그림영을 할당하여
+  원본그림(picChar.hDC)의 X좌표(CharNum*60) Y좌표(45)를 작업화면을 반전하여 AND(SRCERASE)한다.
+
+'작업 화면에 캐릭터 그림을 복사(Xor 연산)
+BitBlt picWork.hDC, MoveX, 20, 60, 45, picChar.hDC, CharNum * 60, 0, SRCINVERT
+: 작업화면(picWork.hDC)의 X좌표(Movex) Y좌표(20) 에 폭(60) 높이(45)의 그림영을 할당하여
+  원본그림(picChar.hDC)의 X좌표(CharNum*60) Y좌표(0)를 작업화면을 반전하여 AND(SRCERASE)한다.
+
+위의 예를 보시면...
+작업그림에 좌표와 크기를 할당하고.. 원본그림을 복하는데...원본 그림이 아무리 크더라도
+작업그림에서 할당한 크기만큼을 복사합니다.
+
+제가 만든 스프라이트 처리중에서 그림상자(Picture Box)에 AutoRedraw속성을 주의 깊게 보세요..
+만약 원본그림을 화면에서 보이지 않게 할경우... AutoRedraw속성을 True로 설정해 주어야 합니다.
+그러지 않으면.... 
+함께 있는 소스 중에서...AutoRedraw속성을 False로 설정하고 실행시켜 보세요...

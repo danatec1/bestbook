@@ -1,0 +1,83 @@
+ %% PLEASE DO NOT MODIFY OR DELETE THIS FILE! %% 
+ %% This file contains information about the installation of an application. %% 
+ %% It will be used to automatically remove all application components from your computer if you choose to do so. %% 
+
+
+NOTE: Beginning of the bootstrapper section
+
+CONFIG: Title: "3dmaze"
+
+ACTION: TempFile: "C:\WINDOWS\setup132.exe"
+(File was not found or was an older version -- new file copied)
+
+ACTION: RegKey: "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion", "SharedDLLs"
+
+ACTION: SharedFile: "C:\WINDOWS\SYSTEM\stkit432.dll"
+(File currently on disk was already up to date)
+
+ACTION: SharedFile: "C:\WINDOWS\SYSTEM\VB40032.DLL"
+(File currently on disk was already up to date)
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM\ven2232.olb"
+(File currently on disk was already up to date)
+
+ACTION: SharedFile: "C:\WINDOWS\SYSTEM\olepro32.dll"
+(File currently on disk was already up to date)
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM\msvcrt20.dll"
+(File currently on disk was already up to date)
+
+ACTION: SharedFile: "C:\WINDOWS\SYSTEM\msvcrt40.dll"
+(File currently on disk was already up to date)
+
+NOTE: The file 'ctl3d32.dll' was not copied because it is intended for use under Windows NT only.  It is not needed under Windows 95.
+
+ACTION: ExeSelfRegister: "C:\WINDOWS\setup132.exe"
+
+ACTION: DllSelfRegister: "C:\WINDOWS\SYSTEM\olepro32.dll"
+
+NOTE: End of the bootstrapper section
+
+NOTE: Now spawning the main Setup program 'C:\WINDOWS\setup132.exe'....
+
+ACTION: CreateDir: "d:\3dmaze\3dmaze"
+
+ACTION: PrivateFile: "d:\3DMAZE\3dmaze\3dmaze.exe"
+(File was not found or was an older version -- new file copied)
+
+*** ERROR: Could not open the file named:
+*** ERROR: D:\3DMAZE\FILE_ID.DI_
+*** ERROR: (User Responded with 'Retry')
+*** DURING THIS ACTION: PrivateFile: "d:\3DMAZE\3dmaze\FILE_ID.DIZ"
+
+*** ERROR: Could not open the file named:
+*** ERROR: D:\3DMAZE\FILE_ID.DI_
+*** ERROR: (User Responded with 'Ignore')
+*** DURING THIS ACTION: PrivateFile: "d:\3DMAZE\3dmaze\FILE_ID.DIZ"
+
+ACTION: PrivateFile: "d:\3DMAZE\3dmaze\3dmaze.frm"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "d:\3DMAZE\3dmaze\3dmaze.frx"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "d:\3DMAZE\3dmaze\3DMAZE.HIS"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "d:\3DMAZE\3dmaze\3dmaze.ico"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "d:\3DMAZE\3dmaze\3dmaze.vbp"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "d:\3DMAZE\3dmaze\3dmaze.doc"
+(File was not found or was an older version -- new file copied)
+
+ACTION: ExeSelfRegister: "d:\3DMAZE\3dmaze\3dmaze.exe"
+
+ACTION: ShellLink: "", "3dmaze"
+
+ACTION: RegKey: "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion", "App Paths\3dmaze.exe"
+
+ACTION: RegValue: "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\3dmaze.exe", ""
+

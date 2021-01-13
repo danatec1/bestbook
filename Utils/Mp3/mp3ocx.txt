@@ -1,0 +1,94 @@
+mp3ocx AcitveX Control module
+
+	공개 : shareware
+	공개 Protect Number : 19670207
+		※ 이 Protect Number에는 기능의 제한이 있습니다.
+
+Mp3ocx 속성
+	(정보)/.AboutBox
+		Mp3ocx의 AboutBox를 보여준다.
+		단, DesignTime에서는 비등록 버젼의 AboutBox를 보여준다.
+	.ErrorString	(읽기 전용)
+		.FileLoad method 사용후 error의 내용을 돌려 준다.
+	.FileName	(쓰기 전용)
+		.mp3 file의 path를 포함한 file name을 저장한다.
+	.Mp3Bitrate	(읽기 전용)
+		.FileLoad 후, FileName에 지정된 mp3의 BitRate를 갖는다.
+		※ share version에서는 사용 불가
+	.Mp3Frames	(읽기 전용)
+		.FileLoad 후, FileName에 지정된 mp3의 Total Frame을 갖는다.
+	.Mp3Layer	(읽기 전용)
+		FileLoad 후, FileName에 지정된 mp3의 Layer를 갖는다.
+		※ share version에서는 사용 불가
+	.MP3Length	(읽기 전용)
+		FileLoad 후, FileName에 지정된 mp3의 길이를 분:초단위로 갖는다.
+	.Mp3Mode	(읽기 전용)
+		FileLoad 후, FileName에 지정된 mp3의 Mode를 갖는다.
+		※ share version에서는 사용 불가
+	.Mp3SampleFrequency	(읽기 전용)
+		FileLoad 후, FileName에 지정된 mp3의 주파수를 갖는다.
+		※ share version에서는 사용 불가
+	.Mp3Version	(읽기 전용)
+		FileLoad 후, FileName에 지정된 mp3의 Version을 갖는다.
+		※ share version에서는 사용 불가
+	.StateCanPause	(읽기 전용)
+		Mp3ocx의 현 상태가 Pause를 할 수 있는지를 갖는다.
+	.StateCanPlay	(읽기 전용)
+		Mp3ocx의 현 상태가 Play를 할 수 있는지를 갖는다.
+	.StateCanStop	(읽기 전용)
+		Mp3ocx의 현 상태가 Stop을 할 수 있는지를 갖는다.
+	.StateCurrentFrame	(읽기 전용)
+		Mp3ocx의 현주 연주중인 frame을 갖는다.
+		이 속성의 값은 연주중 계속 바뀐다.
+	.StatePaused	(읽기 전용)
+		Mp3ocx가 현재 Paused 인가를 갖는다.
+	.StatePlaying	(읽기 전용)
+		Mp3ocx가 현재 연주중인가를 갖는다.
+	.whayoung	(쓰기 전용)
+		Protect Number를 입력한다.
+		Runtime시에 한번만 입력하면 된다.
+		입력되는 Number에 따라, mp3ocx의 기능이 달라진다.
+
+Mp3ocx의 method
+	.AboutBox
+		Mp3ocx의 AboutBox를 보여준다.
+		단, DesignTime에서는 비등록 버젼의 AboutBox를 보여준다.
+		Runtime 시에 .whayoung에 입력된 등록 Protect Number에 따라
+		비등록 Version, share version, 등록 version의
+		세가지 aboutbox를 보여준다.
+	.FileLoad
+		.FileName 속성에 지정된 mp3 file을 load하고,
+		만약 error가 있다면,
+		.ErrorString 속성에 내용을 저장한다.
+		이 method를 사용하기 전에 .FileLoad가 설정되어야 하며,
+		이 method를 사용한 후에 .ErrorString을 검사해야 한다.
+	.Pause
+		연주중인 mp3를 잠시 정지 한다.
+	.Play
+		.FileLoad한 mp3를 연주한다.
+	.Seek SeekPosition%
+		mp3의 연주 위치를 바꾼다.
+		값은 0부터 .Mp3Frames까지 이다.
+		※ share version에서는 사용 불가
+	.Stop
+		연주중인 mp3를 멈추고, 연주위치를 0으로 돌린다.
+
+Mp3ocx의 event
+	_FinishedPlaying
+		.Play후에 연주가 끝나면 발생하는 event로
+		내부적으로 .stop을 실행한 뒤에 event가 발생한다.
+		(내부적으로 .stop을 실행하지 않으면 file open인
+		상태가 되어서리...)
+
+Usage
+	Form_load에서
+	1. Mp3ocx1.whayoung = 19670207
+	기타 사용
+	2. Mp3ocx1.FileName = "<Drive>:\...\*.mp3"
+	3. Mp3ocx1.FileLoad
+	4. If Mp3ocx1.ErrorString = "" Then
+	     Mp3ocx1.Play
+	   Else
+	     MsgBox Mp3ocx1.ErrorString
+	   End If
+	5. ...

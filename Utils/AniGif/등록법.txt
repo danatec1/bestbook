@@ -1,0 +1,7 @@
+등록하는법은 간단하죠.. c:\windows\system 밑에다
+
+gifplay.ocx, gifplay.oca를 복사해 놓고
+
+시작-->실행 에서 regsvr32 gifplay.ocx라고 치면 끝
+
+음 등록하란 소리도 안나오고..좋네요
